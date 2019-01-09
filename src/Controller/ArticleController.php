@@ -10,15 +10,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="app_homepage")
      */
     public function homepage()
     {
-        return new Response('First page');
+        return $this->render('article/homepage.html.twig');
     }
 
     /**
-     * @Route("/hello/{slug}")
+     * @Route("/hello/{slug}", name="article_show")
      */
     public function show($slug)
     {
