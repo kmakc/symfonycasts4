@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -19,7 +20,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/hello/{slug}", name="article_show")
+     * @Route("/news/{slug}", name="article_show")
      */
     public function show($slug)
     {
@@ -37,11 +38,13 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/hello/{slug}/heart", name="article_toggle_heart", methods={"POST"})
+     * @Route("/news/{slug}/heart", name="article_toggle_heart", methods={"POST"})
      */
-    public function toggleArticleHeart($slug)
+    public function toggleArticleHeart($slug, LoggerInterface $logger)
     {
         // TODO - actually heart/unheart the article
+
+        $logger->info('Article is being hearted');
 
         return new JsonResponse(['hearts' => rand(5, 100)]); // or return $this->json(['hearts' => rand(5, 100)]);
     }
