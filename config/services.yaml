@@ -24,5 +24,10 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    # Данная секция нужна для уточнения, какой именно логгер нужно прокинуть сервису MarkdownHelper (по умолчанию будет стандартный)
+    App\Service\MarkdownHelper:
+        arguments:
+            $logger: '@monolog.logger.markdown' # @ означает, что в $logger попадет не строка, а сервис с соотв. алиасом
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

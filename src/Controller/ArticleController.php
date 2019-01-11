@@ -3,14 +3,10 @@
 namespace App\Controller;
 
 use App\Service\MarkdownHelper;
-use Michelf\MarkdownInterface;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
 
 class ArticleController extends AbstractController
 {
