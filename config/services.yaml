@@ -17,6 +17,7 @@ services:
         bind:
             $markdownLogger: '@monolog.logger.markdown'
             $isDebug: '%kernel.debug%'
+            # также в bind можно вместо переменной поместить полное имя класса или интерфейса. чтобы получить алиас: > bin/console debug:container --show-private > bin/console debug:autowiring --all
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
