@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\MarkdownHelper;
+use App\Helper\LoggerTrait;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -10,6 +11,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ArticleController extends AbstractController
 {
+    use LoggerTrait;
+
     /**
      * @var bool
      */
@@ -78,6 +81,9 @@ EOF;
         // TODO - actually heart/unheart the article
 
         $logger->info('Article is being hearted');
+        $this->logInfo('Log frm trait', [
+            'message' => 'test'
+        ]);
 
         return new JsonResponse(['hearts' => rand(5, 100)]); // or return $this->json(['hearts' => rand(5, 100)]);
     }
