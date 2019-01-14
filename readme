@@ -162,4 +162,10 @@ Maker Bundle (генератор кода)
 > bin/console # смотрим новые команды для make
 Генерируем новую консольную команду
 > bin/console make:command
+
+Консольная команда может включать аргументы и опции (параметры)
+> bin/console aricle:stats arg1 arg2 --option1 --opt2=test
+> bin/console article:stats --help # man
+> bin/console article:stats arg --format=json
+
 ============================================================================================================
