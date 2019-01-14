@@ -177,4 +177,8 @@ DOCTRINE AND THE DATABASE
 > composer require doctrine
 Создание БД
 > bin/console doctrine:database:create
+
+ORM - Object relational mapper
+Аннотации:
+https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/reference/annotations-reference.html
 ============================================================================================================
