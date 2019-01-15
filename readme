@@ -192,3 +192,6 @@ https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/reference/annotati
 Свои кастомные страницы с ошибками
 https://symfony.com/doc/current/controller/error_pages.html
 ============================================================================================================
+Создать своё twig расширение:
+> bin/console make:twig-extension
+============================================================================================================
