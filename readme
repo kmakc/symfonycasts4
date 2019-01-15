@@ -189,3 +189,6 @@ https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/reference/annotati
 Статус:
 > bin/console doctrine:migrations:status
 ============================================================================================================
+Свои кастомные страницы с ошибками
+https://symfony.com/doc/current/controller/error_pages.html
+============================================================================================================
