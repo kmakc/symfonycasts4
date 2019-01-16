@@ -182,6 +182,9 @@ ORM - Object relational mapper
 Аннотации:
 https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/reference/annotations-reference.html
 
+Создать или обновить сущность (обновить - ввести существующую после команды):
+> bin/console make:entity
+
 Создать и мирации на основе текущи классов сущностей
 > bin/console make:migration
 Накатить миграци:
