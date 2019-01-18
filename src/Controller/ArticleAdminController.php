@@ -15,22 +15,7 @@ class ArticleAdminController extends AbstractController
      */
     public function new(EntityManagerInterface $em)
     {
-        $article = new Article();
-
-        $article
-            ->setTitle('test title')
-            ->setSlug('test-slug-' . rand(100, 9999))
-            ->setContent('some test content')
-            ->setAuthor('authorTest')
-            ->setHeartCount(rand(1,100))
-            ->setImageFilename('asteroid.jpeg');
-
-        if (rand(1, 10) > 2) {
-            $article->setPublishedAt(new \DateTime(sprintf('-%d days', rand(1, 100))));
-        }
-
-        $em->persist($article);
-        $em->flush();
+        die('todo');
 
         return new Response(sprintf(
             'article was saved: #%d, slug: %s',
