@@ -13,11 +13,13 @@ class ArticleFixtures extends BaseFixture
         'Life on Planet Mercury: Tan, Relaxing and Fabulous',
         'Light Speed Travel: Fountain of Youth or Fallacy',
     ];
+
     private static $articleImages = [
         'asteroid.jpeg',
         'mercury.jpeg',
         'lightspeed.png',
     ];
+
     private static $articleAuthors = [
         'Mike Ferengi',
         'Amy Oort',
@@ -28,7 +30,6 @@ class ArticleFixtures extends BaseFixture
         $this->createMany(Article::class, 10, function(Article $article, $count){
             $article
                 ->setTitle($this->faker->randomElement(self::$articleTitles))
-                ->setSlug($this->faker->slug())
                 ->setContent('some test content' . rand(100, 9999))
                 ->setAuthor($this->faker->randomElement(self::$articleAuthors))
                 ->setHeartCount($this->faker->numberBetween(5, 100))

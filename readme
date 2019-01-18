@@ -228,5 +228,9 @@ https://github.com/fzaninotto/Faker
 
 > composer require fzaninotto/faker --dev
 ============================================================================================================
+https://symfony.com/doc/master/bundles/StofDoctrineExtensionsBundle/index.html
+https://github.com/Atlantic18/DoctrineExtensions/tree/v2.4.x/doc
+https://symfony.com/doc/current/doctrine/event_listeners_subscribers.html
+> composer require stof/doctrine-extensions-bundle
 ============================================================================================================
 ============================================================================================================
