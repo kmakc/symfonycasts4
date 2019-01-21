@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentRepository;
 use App\Service\MarkdownHelper;
 use App\Helper\LoggerTrait;
 use Doctrine\ORM\EntityManagerInterface;
@@ -41,13 +42,12 @@ class ArticleController extends AbstractController
     /**
      * @Route("/news/{slug}", name="article_show")
      */
-    public function show(Article $article)
+    public function show(Article $article, CommentRepository $commentRepository)
     {
-        $comments = [
-            'First comment',
-            'Second comment',
-            'Third comment',
-        ];
+        // В данном случае можно не делать $article->getComments(),
+        // а прямо в Twig получать доступ к комментам так: article.comments
+        //$comments = $commentRepository->findBy(['article' => $article]); // not lazy load
+        $comments = $article->getComments(); // lazy load
 
         return $this->render('article/show.html.twig', [
             'article'  => $article,
