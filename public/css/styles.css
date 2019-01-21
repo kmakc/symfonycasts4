@@ -163,6 +163,10 @@ html {height:100%}
     border-radius: 5px;
 }
 
+.comment-container {
+    max-width: 50%;
+}
+
 /* ARTICLE SHOW PAGE */
 
 .show-article-container {
