@@ -39,24 +39,6 @@ class ArticleFixtures extends BaseFixture
             if ($this->faker->boolean(70)) { // 70% chance to be true
                 $article->setPublishedAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
             }
-
-            $comment1 = new Comment();
-            $comment1->setAuthorName('Mike Ferengi');
-            $comment1->setContent('Asteroids cooment rocks!');
-            //$comment1->setArticle($article);
-
-            $comment2 = new Comment();
-            $comment2->setAuthorName('John Doe');
-            $comment2->setContent('Second comment content');
-            //$comment2->setArticle($article);
-
-
-            $manager->persist($comment1);
-            $manager->persist($comment2);
-
-            // no matter, before or after persist
-            $article->addComment($comment1);
-            $article->addComment($comment2);
         });
 
         $manager->flush();
