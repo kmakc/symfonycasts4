@@ -197,6 +197,9 @@ https://symfony.com/doc/current/controller/error_pages.html
 ============================================================================================================
 Создать своё twig расширение:
 > bin/console make:twig-extension
+Отдельная библиотека с расширениями:
+https://twig-extensions.readthedocs.io/en/latest/
+> bin/console debug:twig
 ============================================================================================================
 Бандл для форматирования дат:
 composer require knplabs/knp-time-bundle
