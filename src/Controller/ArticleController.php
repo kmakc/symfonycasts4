@@ -47,7 +47,7 @@ class ArticleController extends AbstractController
         // В данном случае можно не делать $article->getComments(),
         // а прямо в Twig получать доступ к комментам так: article.comments
         //$comments = $commentRepository->findBy(['article' => $article]); // not lazy load
-        $comments = $article->getComments(); // lazy load
+        $comments = $article->getNonDeletedComments(); // lazy load
 
         return $this->render('article/show.html.twig', [
             'article'  => $article,
