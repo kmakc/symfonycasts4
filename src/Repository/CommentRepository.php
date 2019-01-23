@@ -26,10 +26,12 @@ class CommentRepository extends ServiceEntityRepository
      */
     public function findAllWithSearch(?string $term)
     {
-        $qb = $this->createQueryBuilder('c');
+        $qb = $this->createQueryBuilder('c')
+            ->innerJoin('c.article', 'a')
+            ->addSelect('a'); // для уменьшения количества выборок
 
         if ($term) {
-            $qb->andWhere('c.content LIKE :term OR c.authorName LIKE :term')
+            $qb->andWhere('c.content LIKE :term OR c.authorName LIKE :term OR a.title LIKE :term')
                 ->setParameter('term', '%' . $term . '%');
         }
 
@@ -37,33 +39,4 @@ class CommentRepository extends ServiceEntityRepository
                   ->getQuery()
                   ->getResult();
     }
-
-    // /**
-    //  * @return Comment[] Returns an array of Comment objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Comment
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
