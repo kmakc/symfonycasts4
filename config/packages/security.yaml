@@ -13,7 +13,7 @@ security:
                 property: email
 
     role_hierarchy:
-        ROLE_ADMIN: [ROLE_ADMIN_ARTICLE, ROLE_ADMIN_COMMENT]
+        ROLE_ADMIN: [ROLE_ADMIN_ARTICLE, ROLE_ADMIN_COMMENT, ROLE_ALLOWED_TO_SWITCH]
         #ROLE_EDITOR: [ROLE_ADMIN_ARTICLE]
 
     firewalls:
@@ -32,6 +32,11 @@ security:
             remember_me:
                 secret: '%kernel.secret%'
                 lifetime: 2592000
+
+            # for dynamic check grants.
+            # example http://symfonycasts4.loc/admin/comment?_switch_user=spacebar1@example.com
+            # and http://symfonycasts4.loc/admin/comment?_switch_user=_exit to exit
+            switch_user: true
 
             # activate different ways to authenticate
 
