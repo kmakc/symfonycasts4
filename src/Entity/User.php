@@ -239,4 +239,9 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function __toString() // for correct render in article.homepage.twig
+    {
+        return $this->getFirstName();
+    }
 }
