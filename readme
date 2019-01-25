@@ -303,3 +303,9 @@ Immutable - значит класс без сеттеров. Все свойст
 ============================================================================================================
 Удалить бд
 > bin/console doctrine:schema:drop --full-database --force
+============================================================================================================
+https://symfony.com/doc/current/security/voters.html
+
+В Symfony по умолчанию 2 Voter'а:
+- RoleVoter; (ROLE_..)
+- AuthenticatedVoter (IS_AUTHENTICATED_..)
