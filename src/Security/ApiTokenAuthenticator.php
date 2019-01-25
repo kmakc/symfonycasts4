@@ -3,9 +3,11 @@
 namespace App\Security;
 
 use App\Repository\ApiTokenRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
@@ -27,7 +29,6 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
     {
         return $request->headers->has('Authorization')
             && 0 === strpos($request->headers->get('Authorization'), 'Bearer ');
-
     }
 
     public function getCredentials(Request $request)
@@ -45,7 +46,11 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
         ]);
 
         if (!$token) {
-            return;
+            throw new CustomUserMessageAuthenticationException('Invalid API token');
+        }
+
+        if ($token->isExpired()) {
+            throw new CustomUserMessageAuthenticationException('Token is expired');
         }
 
         return $token->getUser();
@@ -53,26 +58,28 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        dd('csds');
+        return true;
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
-        // todo
+        return new JsonResponse([
+            'message' => $exception->getMessageKey(),
+        ], 401);
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        // todo
+        // allow request to continue
     }
 
     public function start(Request $request, AuthenticationException $authException = null)
     {
-        // todo
+        // Not used: entry_point from other authenticator is used
     }
 
     public function supportsRememberMe()
     {
-        // todo
+        return false;
     }
 }
