@@ -333,5 +333,8 @@ as your form, set the data_class to that class, submit the form, get back that m
 and use it inside your controller to do whatever you want!
 ============================================================================================================
 https://symfony.com/doc/current/reference/forms/types.html
+https://symfony.com/doc/current/forms.html#choice-fields
+https://symfony.com/doc/current/reference/forms/types/entity.html
+EntityType использует по умолчанию __toString метод для отображения выбора в формах. choice_label - указать вручную
 ============================================================================================================
 ============================================================================================================
