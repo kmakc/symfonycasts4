@@ -337,4 +337,8 @@ https://symfony.com/doc/current/forms.html#choice-fields
 https://symfony.com/doc/current/reference/forms/types/entity.html
 EntityType использует по умолчанию __toString метод для отображения выбора в формах. choice_label - указать вручную
 ============================================================================================================
+> composer require validator - Sanity validation
+============================================================================================================
+https://symfony.com/doc/current/reference/constraints.html
+https://symfony.com/doc/current/reference/constraints/Callback.html
 ============================================================================================================

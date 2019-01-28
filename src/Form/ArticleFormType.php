@@ -38,7 +38,8 @@ class ArticleFormType extends AbstractType
                 'choice_label' => 'email', // оr callback function (User $user) {...}
                 'placeholder'  => 'Choose an author',
                 'choices'      => $this->userRepository
-                                    ->findAllEmailAlphabetical()
+                                    ->findAllEmailAlphabetical(),
+                'invalid_message' => 'invalid value'
             ]);
     }
 
