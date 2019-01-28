@@ -332,5 +332,6 @@ of your entities, you can still use data_class. Yep! Create a new model class th
 as your form, set the data_class to that class, submit the form, get back that model object from the form,
 and use it inside your controller to do whatever you want!
 ============================================================================================================
+https://symfony.com/doc/current/reference/forms/types.html
 ============================================================================================================
 ============================================================================================================
