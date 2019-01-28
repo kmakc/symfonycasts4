@@ -317,6 +317,20 @@ FORMS
 Установить формы:
 > composer require form
 ============================================================================================================
+Если в FormType нет привязки формы к классу, то
+$form->getData() будет возвращать ассоциативный массив с данными.
+С привязкой будет возвращаться заполненный данными объект, к классу которого есть привязка
+
+In most cases, this is how I use the form system: by binding my forms to a class. But!
+I do want you to remember one thing: if you have a super complex form that looks different than your entity,
+it's perfectly okay to not use data_class. Sometimes it's simpler to build the form exactly how you want,
+call $form->getData() and use that associative array in your controller to update what you need.
+
+Oh, and while we usually see form types bound to an entity class, that's not required!
+This class could be any PHP class. So, if you have a form that doesn't match up well with any
+of your entities, you can still use data_class. Yep! Create a new model class that has the same properties
+as your form, set the data_class to that class, submit the form, get back that model object from the form,
+and use it inside your controller to do whatever you want!
 ============================================================================================================
 ============================================================================================================
 ============================================================================================================
