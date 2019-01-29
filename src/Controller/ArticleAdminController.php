@@ -49,18 +49,48 @@ class ArticleAdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/article/{id}/edit")
+     * @Route("/admin/article/{id}/edit", name="admin_article_edit")
      */
-    public function edit(Article $article)
+    public function edit(Article $article, Request $request, EntityManagerInterface $em)
     {
         // $this->denyAccessUnlessGranted('MANAGE', $article);
         // or in annotation: * @isGranted("MANAGE", subject="article")
 
-        if (!$this->isGranted('MANAGE', $article)) {
+        /*if (!$this->isGranted('MANAGE', $article)) {
             throw $this->createAccessDeniedException('No access');
         }
 
-        dd($article);
+        dd($article);*/
+
+        $form = $this->createForm(ArticleFormType::class, $article);
+
+        // handle only when post request, loads data to form from request
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            //$data = $form->getData();
+            //$article = $form->getData();
+
+            /* $article = new Article();
+             $article->setTitle($data['title']);
+             $article->setContent($data['content']);*/
+
+            //$article->setAuthor($this->getUser());
+
+            $em->persist($article);
+            $em->flush();
+
+            $this->addFlash('success', 'Article updated successful!');
+
+            return $this->redirectToRoute('admin_article_edit', [
+                'id' => $article->getId(),
+            ]);
+        }
+
+        return $this->render('article_admin/edit.html.twig', [
+            'articleForm' => $form->createView(),
+        ]);
     }
 
     /**
