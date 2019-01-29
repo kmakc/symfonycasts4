@@ -342,3 +342,15 @@ EntityType использует по умолчанию __toString метод д
 https://symfony.com/doc/current/reference/constraints.html
 https://symfony.com/doc/current/reference/constraints/Callback.html
 ============================================================================================================
+Form Theme Template & Block System
+Here's how it works: every field has five different components: the row and the 4 things it contains:
+the widget label, errors and help. When you render each part, Symfony opens this template, selects the
+correct block for the thing it's rendering, and renders it like a mini-template. It passes all the variables into that block.
+
+Symfony default form theme template:
+/vendor/symfony/twig-bridge/Resources/views/Form/bootstrap_4_layout.html.twig
+/vendor/symfony/twig-bridge/Resources/views/Form/form_div_layout.html.twig
+============================================================================================================
+ When we call form_widget(registrationForm), that's a shortcut for calling form_row() on each field.
+ That means that the "row" part of each field is rendered.
+============================================================================================================
