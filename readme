@@ -354,3 +354,15 @@ Symfony default form theme template:
  When we call form_widget(registrationForm), that's a shortcut for calling form_row() on each field.
  That means that the "row" part of each field is rendered.
 ============================================================================================================
+Normally... that's all we would need to do: we could instantly use that property below.
+But... this object is not instantiated by Symfony's container. So, we don't get our cool autowiring magic.
+Nope, in this case, we are creating this object ourselves! And so, we are responsible for passing it whatever it needs.
+
+It's no big deal, but, we do have some more work. In the field type class, add an identical __construct()
+method with the same UserRepository argument. Hit Alt+Enter again to initialize that field.
+The form type classes are services, so autowiring will work here.
+============================================================================================================
+============================================================================================================
+============================================================================================================
+============================================================================================================
+============================================================================================================
