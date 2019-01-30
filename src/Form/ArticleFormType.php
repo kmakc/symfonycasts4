@@ -34,6 +34,7 @@ class ArticleFormType extends AbstractType
                 'widget' => 'single_text'
             ])
             ->add('author', UserSelectTextType::class, [
+                'attr' => ['class' => 'test-class']
                 //'invalid_message' => 'Hmm, user not found',
                 //'finder_callback' => some custom callback..
             ])
