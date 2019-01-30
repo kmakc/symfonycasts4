@@ -362,6 +362,8 @@ It's no big deal, but, we do have some more work. In the field type class, add a
 method with the same UserRepository argument. Hit Alt+Enter again to initialize that field.
 The form type classes are services, so autowiring will work here.
 ============================================================================================================
+algolia autocomplete
+https://github.com/algolia/autocomplete.js/blob/master/README.md
 ============================================================================================================
 ============================================================================================================
 ============================================================================================================
