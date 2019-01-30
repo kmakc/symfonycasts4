@@ -33,14 +33,15 @@ class ArticleFormType extends AbstractType
             ->add('publishedAt', null, [
                 'widget' => 'single_text'
             ])
-            ->add('author', EntityType::class, [
+            ->add('author', UserSelectTextType::class)
+            /*->add('author', EntityType::class, [
                 'class'        => User::class,
                 'choice_label' => 'email', // оr callback function (User $user) {...}
                 'placeholder'  => 'Choose an author',
                 'choices'      => $this->userRepository
                                     ->findAllEmailAlphabetical(),
                 'invalid_message' => 'invalid value'
-            ]);
+            ])*/;
     }
 
     public function configureOptions(OptionsResolver $resolver)
