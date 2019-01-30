@@ -14,10 +14,16 @@ class EmailToUserTransformer implements DataTransformerInterface
      */
     private $userRepository;
 
-    public function __construct(UserRepository $userRepository)
+    /**
+     * @var callable
+     */
+    private $finderCallback;
+
+    public function __construct(UserRepository $userRepository, callable $finderCallback)
     {
 
         $this->userRepository = $userRepository;
+        $this->finderCallback = $finderCallback;
     }
 
     public function transform($value)
@@ -38,7 +44,9 @@ class EmailToUserTransformer implements DataTransformerInterface
     {
         //dd('reverse transform', $value);
 
-        $user = $this->userRepository->findOneBy(['email' => $value]);
+        //$user = $this->userRepository->findOneBy(['email' => $value]);
+        $callback = $this->finderCallback;
+        $user = $callback($this->userRepository, $value);
 
         if (!$value) {
             return;
