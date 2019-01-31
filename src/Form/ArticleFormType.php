@@ -25,6 +25,9 @@ class ArticleFormType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $article = $options['data'] ?? null;
+        $isEdit = $article && $article->getId();
+
         $builder
             ->add('title', TextType::class, [
                 'help' => 'Choose some'
@@ -32,11 +35,10 @@ class ArticleFormType extends AbstractType
             ->add('content', null, [
                 'rows' => 15
             ])
-            ->add('publishedAt', null, [
-                'widget' => 'single_text'
-            ])
+
             ->add('author', UserSelectTextType::class, [
-                'attr' => ['class' => 'test-class']
+                'attr' => ['class' => 'test-class'],
+                'disabled' => $isEdit
                 //'invalid_message' => 'Hmm, user not found',
                 //'finder_callback' => some custom callback..
             ])
@@ -48,12 +50,19 @@ class ArticleFormType extends AbstractType
                                     ->findAllEmailAlphabetical(),
                 'invalid_message' => 'invalid value'
             ])*/;
+
+            if ($options['include_published_at']) {
+                $builder->add('publishedAt', null, [
+                    'widget' => 'single_text'
+                ]);
+            }
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Article::class
+            'data_class'           => Article::class,
+            'include_published_at' => false
         ]);
     }
 

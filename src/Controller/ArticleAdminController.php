@@ -62,7 +62,9 @@ class ArticleAdminController extends AbstractController
 
         dd($article);*/
 
-        $form = $this->createForm(ArticleFormType::class, $article);
+        $form = $this->createForm(ArticleFormType::class, $article, [
+            'include_published_at' => true
+        ]);
 
         // handle only when post request, loads data to form from request
         $form->handleRequest($request);
