@@ -317,6 +317,9 @@ FORMS
 Установить формы:
 > composer require form
 ============================================================================================================
+Создать валидатор
+> bin/console make:validator
+============================================================================================================
 Если в FormType нет привязки формы к классу, то
 $form->getData() будет возвращать ассоциативный массив с данными.
 С привязкой будет возвращаться заполненный данными объект, к классу которого есть привязка
@@ -374,4 +377,9 @@ When you use a model class, the downside is that you need to do a bit more work 
  That's why these model classes are often called "data transfer objects": they just hold data and
  help transfer it between systems: the form system and our entity classes.
 ============================================================================================================
+One note: if this were an edit form where a user could change their email, this validator would need to
+make sure that the existing user wasn't actually just this user, if they submitted without changing their email.
+In that case, we would need $value to be the entire object so that we could use the id to be sure of this.
+To do that, you would need to change UniqueUser so that it lives above the class, instead of the property.
+You would also need to add an id property to UserRegistrationFormModel.
 ============================================================================================================
