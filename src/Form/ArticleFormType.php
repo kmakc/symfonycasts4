@@ -26,8 +26,11 @@ class ArticleFormType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        /** @var Article|null $article */
         $article = $options['data'] ?? null;
         $isEdit = $article && $article->getId();
+
+        $location = $article ? $article->getLocation() : null;
 
         $builder
             ->add('title', TextType::class, [
@@ -51,14 +54,16 @@ class ArticleFormType extends AbstractType
                     'Interstellar Space' => 'interstellar_space'
                 ],
                 'required' => false,
-            ])
-            ->add('specificLocationName', ChoiceType::class, [
-                'placeholder' => 'where exactly?',
-                'choices' => [
-                    'TODO' => 'TODO',
-                ],
-                'required' => false,
-            ])
+            ]);
+
+            if ($location) {
+                $builder->add('specificLocationName', ChoiceType::class, [
+                    'placeholder' => 'where exactly?',
+                    'choices' => $this->getLocationNameChoices($location),
+                    'required' => false,
+                ]);
+            }
+
             /*->add('author', EntityType::class, [
                 'class'        => User::class,
                 'choice_label' => 'email', // оr callback function (User $user) {...}
@@ -83,5 +88,32 @@ class ArticleFormType extends AbstractType
         ]);
     }
 
-
+    private function getLocationNameChoices(string $location)
+    {
+        $planets = [
+            'Mercury',
+            'Venus',
+            'Earth',
+            'Mars',
+            'Jupiter',
+            'Saturn',
+            'Uranus',
+            'Neptune',
+        ];
+        $stars = [
+            'Polaris',
+            'Sirius',
+            'Alpha Centauari A',
+            'Alpha Centauari B',
+            'Betelgeuse',
+            'Rigel',
+            'Other'
+        ];
+        $locationNameChoices = [
+            'solar_system' => array_combine($planets, $planets),
+            'star' => array_combine($stars, $stars),
+            'interstellar_space' => null,
+        ];
+        return $locationNameChoices[$location];
+    }
 }
