@@ -383,3 +383,9 @@ In that case, we would need $value to be the entire object so that we could use 
 To do that, you would need to change UniqueUser so that it lives above the class, instead of the property.
 You would also need to add an id property to UserRegistrationFormModel.
 ============================================================================================================
+One: if your form looks quite different than your entity, either remove the data_class option and use the
+associative array the form gives you to do your work or bind your form to a model class.
+Two: if your form has a complex frontend with a lot of AJAX and updating, it might be easier -
+and a better user experience - if you skip the form and write everything with JavaScript.
+Use this tool in the right places, and you'll be happy.
+============================================================================================================
