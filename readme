@@ -369,5 +369,9 @@ https://github.com/algolia/autocomplete.js/blob/master/README.md
 ============================================================================================================
 Next: let's talk about another approach to handling the situation where your
 form looks different than your entity class: data transfer objects.
+When you use a model class, the downside is that you need to do a bit more work to transfer the
+ data from our model object into the entity object - or objects - that actually need it.
+ That's why these model classes are often called "data transfer objects": they just hold data and
+ help transfer it between systems: the form system and our entity classes.
 ============================================================================================================
 ============================================================================================================
