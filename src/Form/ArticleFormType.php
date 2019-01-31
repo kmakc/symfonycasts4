@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -41,6 +42,22 @@ class ArticleFormType extends AbstractType
                 'disabled' => $isEdit
                 //'invalid_message' => 'Hmm, user not found',
                 //'finder_callback' => some custom callback..
+            ])
+            ->add('location', ChoiceType::class, [
+                'placeholder' => 'choose location',
+                'choices' => [
+                    'The Solar System'   => 'solar_system',
+                    'Near a star'        => 'star',
+                    'Interstellar Space' => 'interstellar_space'
+                ],
+                'required' => false,
+            ])
+            ->add('specificLocationName', ChoiceType::class, [
+                'placeholder' => 'where exactly?',
+                'choices' => [
+                    'TODO' => 'TODO',
+                ],
+                'required' => false,
             ])
             /*->add('author', EntityType::class, [
                 'class'        => User::class,
